@@ -1,0 +1,7 @@
+<div>
+  <h2>{{todo.title}}</h2>
+  <p>{{todo.description}}</p>
+  <p>{{todo.endDate | date}}</p>
+  <input type="checkbox" [checked]="todo.completed"/>
+  <button (click)="remove.emit()">Remove todo</button>
+</div>
