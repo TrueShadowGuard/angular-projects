@@ -1,6 +1,6 @@
 <section>
   <app-create-todo-form (submitTodo)="addTodo($event)"></app-create-todo-form>
   <div *ngFor="let todo of todos">
-    <app-todo [todo]="todo" (remove)="removeTodo(todo)"></app-todo>
+    <app-todo [todo]="todo" (remove)="removeTodo(todo)" (completedChange)="setCompleted(todo, $event)"></app-todo>
   </div>
 </section>

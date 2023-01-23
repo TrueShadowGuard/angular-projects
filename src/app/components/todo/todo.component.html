@@ -1,7 +1,7 @@
-<div>
+<div class="todo">
   <h2>{{todo.title}}</h2>
   <p>{{todo.description}}</p>
-  <p>{{todo.endDate | date}}</p>
-  <input type="checkbox" [checked]="todo.completed"/>
-  <button (click)="remove.emit()">Remove todo</button>
+  <p class="date">{{todo.endDate | date}}</p>
+  <mat-checkbox color="primary" [checked]="todo.completed" (change)="onCompletedChange($event)"><span class="complete">Complete</span></mat-checkbox>
+  <button class="removeTodo" mat-flat-button color="warn" (click)="remove.emit()">Remove todo</button>
 </div>

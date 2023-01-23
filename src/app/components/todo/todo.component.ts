@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ITodo} from "../../models/todo";
+import {MatCheckboxChange} from "@angular/material/checkbox";
 
 @Component({
   selector: 'app-todo',
@@ -8,11 +9,15 @@ import {ITodo} from "../../models/todo";
 })
 export class TodoComponent {
   @Output()
-  todoCompletedChanged = new EventEmitter<boolean>();
+  completedChange = new EventEmitter<boolean>();
 
   @Output()
   remove = new EventEmitter<void>();
 
   @Input()
   todo!: ITodo
+
+  onCompletedChange(e: MatCheckboxChange) {
+    this.completedChange.emit(e.checked);
+  }
 }
