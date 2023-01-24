@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {ITodo} from "../../models/todo";
-import {FormControl, FormGroup, FormGroupDirective, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, FormGroupDirective, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-create-todo-form',
@@ -12,8 +12,8 @@ export class CreateTodoFormComponent {
   submitTodo = new EventEmitter<ITodo>();
 
   createTodoForm = new FormGroup({
-    titleControl: new FormControl("", [Validators.required]),
-    descriptionControl: new FormControl("", Validators.required),
+    titleControl: new FormControl("", [Validators.required, Validators.minLength(6)]),
+    descriptionControl: new FormControl(""),
     dateControl: new FormControl(new Date(), Validators.required),
   });
 
@@ -36,6 +36,12 @@ export class CreateTodoFormComponent {
   }
 
   ngOnInit() {
+    //@ts-ignore
+    window.c = this.createTodoForm;
     this.createTodoForm.statusChanges.subscribe(() => console.log(this.createTodoForm.errors))
+  }
+
+  get form(): { [key: string]: AbstractControl; } {
+    return this.createTodoForm.controls;
   }
 }
