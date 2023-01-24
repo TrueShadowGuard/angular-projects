@@ -4,10 +4,10 @@
       <mat-form-field appearance="outline" class="form-field">
         <input matInput placeholder="Title" name="title" formControlName="titleControl">
         <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        <mat-error *ngIf="form.titleControl.touched && form.titleControl?.errors?.required">
+        <mat-error *ngIf="form.titleControl.touched && form.titleControl.hasError('required')">
           Must not be empty
         </mat-error>
-        <mat-error *ngIf="form.titleControl.touched && form.titleControl?.errors?.minlength">
+        <mat-error *ngIf="form.titleControl.touched && form.titleControl.hasError('minlength')">
           Must contain at least 6 characters
         </mat-error>
       </mat-form-field>
@@ -25,7 +25,7 @@
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="form.dateControl.touched && form.dateControl?.errors?.matDatepickerParse">
+        <mat-error *ngIf="form.dateControl.touched && form.dateControl.hasError('matDatepickerParse')">
           Must match MM/DD/YYYY
         </mat-error>
       </mat-form-field>
